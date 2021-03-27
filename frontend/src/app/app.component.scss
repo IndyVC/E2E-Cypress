@@ -1,11 +1,28 @@
 .main-card {
-  width: 90%;
-  text-align: center;
-}
+    width: 90%;
+    text-align: center;
+  }
 
-.main-div {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .main-div {
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer {
+    text-align: center;
+    font-size: x-small;
+    padding: 3px;
+    color: lightblue;
+  }
+
+  .bond-avatar-image {
+    background-image: url('/assets/firearm-1300396_640.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .mat-card-avatar {
+    border-radius: 0;
+  }

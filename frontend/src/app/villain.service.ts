@@ -27,6 +27,10 @@ export class VillainService {
     return of(this.villainsCache.slice(0, count));
   }
 
+  addVillain(villain: Villain) {
+    this.villainsCache.push(villain);
+  }
+
   private shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i

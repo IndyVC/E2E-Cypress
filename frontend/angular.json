@@ -28,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -44,7 +44,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -93,7 +92,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -113,35 +112,10 @@
           }
         },
         "e2e": {
-          "builder": "@briebug/cypress-schematic:cypress",
+          "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "devServerTarget": "bond-villains:serve",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "bond-villains:serve:production"
-            }
-          }
-        },
-        "cypress-run": {
-          "builder": "@briebug/cypress-schematic:cypress",
-          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
             "devServerTarget": "bond-villains:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "bond-villains:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@briebug/cypress-schematic:cypress",
-          "options": {
-            "devServerTarget": "bond-villains:serve",
-            "watch": true,
-            "headless": false
           },
           "configurations": {
             "production": {

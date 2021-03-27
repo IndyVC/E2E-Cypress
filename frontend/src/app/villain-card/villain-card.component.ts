@@ -30,4 +30,6 @@ export class VillainCardComponent {
   backgroundRequest() {
     this.villainService.randomVillains(1, 0).subscribe();
   }
+
+
 }
