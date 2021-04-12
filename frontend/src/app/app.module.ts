@@ -15,13 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { AddVillainComponent } from './add-villain/add-villain.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     AppComponent,
     VillainCardComponent,
     VillainListComponent,
-    AddVillainComponent
+    AddVillainComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +36,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatCardModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatPaginatorModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

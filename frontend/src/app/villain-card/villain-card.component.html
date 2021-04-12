@@ -1,7 +1,7 @@
     <app-villain-list [villains]="villains$"> </app-villain-list>
 
     <br/>
-    <button mat-raised-button [routerLink]="'/AddVillain'">Add Villain</button>
+    <button mat-raised-button (click)="addVillain(0)">Add Villain</button>
 
     <button mat-raised-button (click)="cacheReload()">Reload from cache</button>
     <button mat-raised-button (click)="quickReload()">Reload 0 ms</button>

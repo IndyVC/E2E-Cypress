@@ -5,30 +5,32 @@ import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VillainService {
   villainsCache: Villain[] = [];
-  private url = 'http://localhost:4300/api/get/';
+  private url = 'http://localhost:4300/api/';
 
   constructor(private httpClient: HttpClient) {}
 
-  randomVillains(count: number, delay: number): Observable<Villain[]> {
-    return this.httpClient.get<Villain[]>(this.url + delay).pipe(
-      tap(villains => (this.villainsCache = villains)),
-      map(villains => {
-        this.shuffle(villains);
-        return villains.slice(0, count);
-      })
-    );
+  getVillains(delay: number): Observable<Villain[]> {
+    return this.loadVillains(delay);
   }
 
   cachedVillains(count: number): Observable<Villain[]> {
     return of(this.villainsCache.slice(0, count));
   }
 
-  addVillain(villain: Villain) {
-    this.villainsCache.push(villain);
+  addVillain(villain: Villain, delay: number): Observable<any> {
+    return this.httpClient.post(this.url + delay, villain, {
+      responseType: 'text',
+    });
+  }
+
+  private loadVillains(delay: number) {
+    return this.httpClient
+      .get<Villain[]>(this.url + delay)
+      .pipe(tap((villains) => (this.villainsCache = villains)));
   }
 
   private shuffle(array) {

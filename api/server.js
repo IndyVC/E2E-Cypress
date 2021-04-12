@@ -1,36 +1,65 @@
 const http = require("http");
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
+const morgan = require("morgan");
 const HTTP_PORT = 4300;
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 
+let villains = [];
+
 function initApp(app) {
   app.use(cors());
+  app.use(bodyParser.json());
+  app.use(morgan("combined"));
 
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render("error", {
       message: err.message,
-      error: err
+      error: err,
     });
   });
 
-  //app.use(express.static("www"));
+  function getHandler(res) {
+    res.send(JSON.stringify(villains));
+  }
 
-  app.get("/api/get/:delay", function(req, res) {
+  app.get("/api/:delay", function (req, res) {
     const delay = req.params.delay;
     if (delay) {
-      setTimeout(
-        () => res.sendFile("villain.data.json", { root: "./www" }),
-        delay
-      );
+      setTimeout(() => getHandler(res), delay);
     } else {
-      res.sendFile("villain.data.json", { root: "./www" });
+      getHandler(res);
+    }
+  });
+
+  function postHandler(req, res) {
+    villains.push(req.body);
+    res.send("OK");
+  }
+
+  app.post("/api/:delay", function (req, res) {
+    const delay = req.params.delay;
+    if (delay) {
+      setTimeout(() => postHandler(req, res), delay);
+    } else {
+      postHandler(req, res);
     }
   });
 }
 
+function initVillains() {
+  const rawdata = fs.readFileSync(
+    path.join(__dirname, "www", "villain.data.json")
+  );
+  villains = JSON.parse(rawdata);
+}
+
+initVillains();
 initApp(app);
 let httpServer = http.createServer(app);
 httpServer.listen(HTTP_PORT, () => {
