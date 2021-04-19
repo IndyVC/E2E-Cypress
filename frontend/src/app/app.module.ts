@@ -17,6 +17,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatBadgeModule } from '@angular/material/badge';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { BasicCommandsComponent } from './commands/basic-commands/basic-commands.component';
+import { CommandsCardComponent } from './commands/commands-card/commands-card.component';
+import { HomeComponent } from './home/home.component';
+import { ElementInteractionComponent } from './commands/element-interaction/element-interaction.component';
+import { HttpRequestComponent } from './commands/http-request/http-request.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +34,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     VillainCardComponent,
     VillainListComponent,
     AddVillainComponent,
+    BasicCommandsComponent,
+    CommandsCardComponent,
+    HomeComponent,
+    ElementInteractionComponent,
+    HttpRequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +54,23 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatBadgeModule,
+    HighlightModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          javascript: () => import('highlight.js/lib/languages/javascript'),
+        },
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

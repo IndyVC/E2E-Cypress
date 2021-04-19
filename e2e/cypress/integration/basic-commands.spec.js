@@ -1,32 +1,38 @@
 describe("Basic commands", () => {
   it("visit", () => {
-    cy.visit("http://localhost:4200");
+    cy.visit("http://localhost:4200/Commands/Basic/visit");
     cy.visit("/");
-    cy.visit("/visit");
+    cy.visit("/Commands/Basic/visit");
+    cy.waitForHighlight();
   });
 
   it("get", () => {
-    cy.visit("/get");
+    cy.visit("/Commands/Basic/get");
+    cy.waitForHighlight();
     cy.get("button");
-    cy.get("button.save");
+    cy.get("button.save-button");
     cy.get("#save-button");
+    cy.get("#snail-button");
   });
 
   it("should", () => {
-    cy.visit("/should");
+    cy.visit("/Commands/Basic/should");
+    cy.waitForHighlight();
     cy.get("#save-button").should("have.text", "Save");
     cy.get("#first-name").should("have.value", "Zaphod");
   });
 
   it("contains", () => {
-    cy.visit("/contains");
-    cy.contains("The header");
+    cy.visit("/Commands/Basic/contains");
+    cy.waitForHighlight();
+    cy.contains("Basic commands");
     cy.get("button").contains("Save");
   });
 
   it("as", () => {
-    cy.visit("/as");
-    cy.get("div span button").as("saveButton");
+    cy.visit("/Commands/Basic/as");
+    cy.waitForHighlight();
+    cy.get("app-basic-commands button.save-button").as("saveButton");
     cy.get("@saveButton");
   });
 });

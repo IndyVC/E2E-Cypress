@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("waitForHighlight", () => {
+  cy.get("pre.highlight-done", { log: false }).wait(5, { log: false });
+});

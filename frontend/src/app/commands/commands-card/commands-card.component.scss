@@ -1,0 +1,17 @@
+.cypress-avatar-image {
+  background-image: url("https://www.cypress.io/static/33498b5f95008093f5f94467c61d20ab/c0bf4/cypress-logo.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.mat-card-avatar {
+  border-radius: 0;
+}
+
+.spread {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}

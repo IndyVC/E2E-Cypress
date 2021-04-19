@@ -1,3 +1,14 @@
+<mat-card class="villain-card">
+  <mat-card-header>
+    <div mat-card-avatar class="bond-avatar-image"></div>
+    <mat-card-title>James Bond Movie Villains</mat-card-title>
+    <mat-card-subtitle><img
+      src="https://www.cypress.io/static/33498b5f95008093f5f94467c61d20ab/c0bf4/cypress-logo.webp"
+      height="12px"
+    />&nbsp;&nbsp; demo site</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <br />
     <app-villain-list [villains]="villains$"> </app-villain-list>
 
     <br/>
@@ -10,3 +21,6 @@
     <button mat-raised-button (click)="backgroundRequest()">
       Background request
     </button>
+  </mat-card-content>
+</mat-card>
+

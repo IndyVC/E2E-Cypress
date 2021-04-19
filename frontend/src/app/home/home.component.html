@@ -1,0 +1,12 @@
+<h3>Bond villains</h3>
+<a routerLink="/Villains" >Bond Villains</a>
+
+<h3>Cypress commands</h3>
+<ul>
+  <li *ngFor="let cg of commandGroups"> {{ cg.groupName }}
+    <ul>
+      <li *ngFor="let command of cg.commands"><a routerLink="{{ cg.baseUrl + command }}" >{{command}}</a></li>
+    </ul>
+  </li>
+</ul>
+

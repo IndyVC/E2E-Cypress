@@ -39,7 +39,7 @@ function initApp(app) {
 
   function postHandler(req, res) {
     villains.push(req.body);
-    res.send("OK");
+    res.send(`"OK added villain '${req.body.villain}'"`);
   }
 
   app.post("/api/:delay", function (req, res) {
@@ -49,6 +49,11 @@ function initApp(app) {
     } else {
       postHandler(req, res);
     }
+  });
+
+  app.delete("/api", function (req, res) {
+    initVillains();
+    res.send("OK");
   });
 }
 

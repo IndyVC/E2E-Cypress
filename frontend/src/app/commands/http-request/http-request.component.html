@@ -1,0 +1,15 @@
+<form>
+  <mat-form-field>
+    <mat-label>Response body</mat-label>
+    <input matInput id="res-body">
+  </mat-form-field>
+
+  <div class="on-row">
+    <button mat-raised-button color="primary" type="button" id="load-villains" (click)="loadVillains()">Load villains</button>
+  </div>
+
+  <mat-form-field>
+    <mat-label># of villains</mat-label>
+    <input matInput id="villains-count" [formControl]="formGroup.controls.villainsCount" readonly>
+  </mat-form-field>
+</form>

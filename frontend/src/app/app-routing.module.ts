@@ -1,16 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddVillainComponent } from './add-villain/add-villain.component';
+import { BasicCommandsComponent } from './commands/basic-commands/basic-commands.component';
+import { CommandsCardComponent } from './commands/commands-card/commands-card.component';
+import { ElementInteractionComponent } from './commands/element-interaction/element-interaction.component';
+import { HttpRequestComponent } from './commands/http-request/http-request.component';
+import { HomeComponent } from './home/home.component';
 import { VillainCardComponent } from './villain-card/villain-card.component';
 
 const routes: Routes = [
-  { path: 'AddVillain', component: AddVillainComponent },
-  { path: 'List', component: VillainCardComponent },
-  { path: '',   redirectTo: '/List', pathMatch: 'full' },
+  { path: 'Villains', component: VillainCardComponent },
+  {
+    path: 'Commands',
+    component: CommandsCardComponent,
+    children: [
+      { path: 'Basic/:command', component: BasicCommandsComponent },
+      { path: 'Element/:command', component: ElementInteractionComponent },
+      { path: 'Http/:command', component: HttpRequestComponent },
+      //{ path: '**', redirectTo: 'Basic/get' },
+    ],
+  },
+  { path: '', component: HomeComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

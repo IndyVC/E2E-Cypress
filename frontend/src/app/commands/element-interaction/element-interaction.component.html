@@ -1,0 +1,72 @@
+<form>
+  <ng-container *ngIf="command === 'type'">
+    <div class="on-row">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput id="first-name" value="Zaphod">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input matInput id="last-name" value="Beeblebrox">
+      </mat-form-field>
+    </div>
+
+    <p>
+      <span id="shortcut-count" class="badge-span" [matBadge]="shortcut" matBadgeOverlap="false" matBadgePosition="above after">Ctrl+Y pressed</span>
+    </p>
+  </ng-container>
+
+  <ng-container *ngIf="command === 'check' || command === 'uncheck'">
+    <h3>Angular Material checkboxes</h3>
+    <div class="on-row">
+      <mat-checkbox id="great-food" [checked]="true">Great food</mat-checkbox>
+      <mat-checkbox id="good-service">Good service</mat-checkbox>
+      <mat-checkbox id="cheap">Cheap</mat-checkbox>
+    </div>
+    <h3>Native style checkboxes</h3>
+    <div class="on-row">
+      <input type="checkbox" id="clean-car" name="clean-car"><label for="clean-car">Clean car</label>
+      <input type="checkbox" id="silent-driver" name="silent-driver" [checked]="true"><label for="silent-driver">Silent driver</label>
+    </div>
+
+    <h3>Angular Material radio buttons</h3>
+    <mat-radio-group aria-label="Select an option" class="on-row">
+      <mat-radio-button value="1" id="green">Green</mat-radio-button>
+      <mat-radio-button value="2" id="blue">Blue</mat-radio-button>
+    </mat-radio-group>
+
+    <h3>Native style radio buttons</h3>
+    <div class="on-row">
+      <input type="radio" id="gold" name="metal"><label for="gold">Gold</label>
+      <input type="radio" id="silver" name="metal" [checked]="true"><label for="silver">Silver</label>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="command === 'click'">
+    <div class="buttons">
+      <button mat-raised-button color="primary" type="button" class="save-button" id="save-button">Save</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="command === 'select' || command === 'click'">
+    <mat-form-field>
+      <mat-label>Favorite food</mat-label>
+      <mat-select id="material-select">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h4>Basic native select</h4>
+      <label>Cars</label>
+      <select id="native-select">
+        <option value="volvo">Volvo</option>
+        <option value="tesla">Tesla</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+  </ng-container>
+
+</form>

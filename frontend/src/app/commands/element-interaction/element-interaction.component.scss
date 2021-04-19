@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+}
+
+div.on-row * {
+  margin-right: 12px;
+}
+
+span.badge-span {
+  display: block;
+}

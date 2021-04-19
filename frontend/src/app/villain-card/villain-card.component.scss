@@ -1,9 +1,14 @@
-.example-header-image {
-  background-image: url('/assets/firearm-1300396_640.png');
+.bond-avatar-image {
+  background-image: url("/assets/firearm-1300396_640.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .mat-card-avatar {
   border-radius: 0;
+}
+
+.villain-card {
+  width: 90%;
+  text-align: center;
 }

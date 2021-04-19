@@ -1,0 +1,21 @@
+<div class="spread">
+  <mat-card class="commands-card" *ngIf="title$ | async as commandTitle">
+    <mat-card-header>
+      <div mat-card-avatar class="cypress-avatar-image"></div>
+      <mat-card-title>{{commandTitle.title}}</mat-card-title>
+      <mat-card-subtitle>{{commandTitle.subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <router-outlet></router-outlet>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="test-source-card" *ngIf="code$ | async as sourceCode">
+    <mat-card-header>
+      <mat-card-title>Test case source code</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <pre [ngClass]="{ 'highlight-done': highlightDone }"><code [highlight]="sourceCode.code" [languages]="javascript" (highlighted)="highlighted()"></code></pre>
+    </mat-card-content>
+  </mat-card>
+</div>
