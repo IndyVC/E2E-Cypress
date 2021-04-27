@@ -4,7 +4,19 @@
   "description": "Demo site for showing James Bond villains",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "demo:dev": "concurrently --kill-others --success first \"npm:api\" \"npm:frontend:dev\" \"npm:e2e:dev\"",
+    "demo": "concurrently --kill-others --success first \"npm:api\" \"npm:frontend:prod\" \"npm:e2e\"",
+    "demo:ci": "concurrently --kill-others --success first \"npm:api\" \"npm:frontend:prod\" \"npm:e2e:ci\"",
+    "build": "npm i && npm run api:build && npm run frontend:build && npm run e2e:build",
+    "api:build": "cd api && npm i",
+    "frontend:build": "cd frontend && npm i && npm run build:prod",
+    "e2e:build": "cd e2e && npm i",
+    "api": "cd api && npm run start",
+    "frontend:dev": "cd frontend && npm run start",
+    "frontend:prod": "cd frontend-server && npm run start",
+    "e2e:dev": "cd e2e && npx cypress open --config baseUrl=http://localhost:4200",
+    "e2e": "cd e2e && npx cypress open",
+    "e2e:ci": "cd e2e && npx cypress run"
   },
   "repository": {
     "type": "git",
@@ -18,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/bjowes/bond-villains/issues"
   },
-  "homepage": "https://github.com/bjowes/bond-villains#readme"
+  "homepage": "https://github.com/bjowes/bond-villains#readme",
+  "dependencies": {
+    "concurrently": "^6.0.2"
+  }
 }

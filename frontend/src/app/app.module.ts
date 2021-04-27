@@ -27,6 +27,8 @@ import { CommandsCardComponent } from './commands/commands-card/commands-card.co
 import { HomeComponent } from './home/home.component';
 import { ElementInteractionComponent } from './commands/element-interaction/element-interaction.component';
 import { HttpRequestComponent } from './commands/http-request/http-request.component';
+import { DebugSettingsCommandsComponent } from './commands/debug-settings-commands/debug-settings-commands.component';
+import { UserLookupComponent } from './user-lookup/user-lookup.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { HttpRequestComponent } from './commands/http-request/http-request.compo
     HomeComponent,
     ElementInteractionComponent,
     HttpRequestComponent,
+    DebugSettingsCommandsComponent,
+    UserLookupComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,11 +10,20 @@ const path = require("path");
 const app = express();
 
 let villains = [];
+let users = [
+  { userName: "neal", fullName: "Neal Armstrong" },
+  { userName: "jdoe", fullName: "John Doe" },
+];
 
 function initApp(app) {
   app.use(cors());
   app.use(bodyParser.json());
-  app.use(morgan("combined"));
+  if (
+    process.argv.indexOf("--verbose") !== -1 ||
+    process.argv.indexOf("-v") !== -1
+  ) {
+    app.use(morgan("combined"));
+  }
 
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
@@ -55,6 +64,16 @@ function initApp(app) {
     initVillains();
     res.send("OK");
   });
+
+  app.get("/user/:username", function (req, res) {
+    let user = users.find((user) => user.userName === req.params.username);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404);
+      res.send("Unknown user");
+    }
+  });
 }
 
 function initVillains() {
@@ -68,5 +87,6 @@ initVillains();
 initApp(app);
 let httpServer = http.createServer(app);
 httpServer.listen(HTTP_PORT, () => {
-  console.log(`listening on http://localhost:${HTTP_PORT}!`);
+  console.log(`API listening on http://localhost:${HTTP_PORT}!`);
+  console.log(`start with -v flag for logging`);
 });

@@ -1,6 +1,6 @@
 describe("Basic commands", () => {
   it("visit", () => {
-    cy.visit("http://localhost:4200/Commands/Basic/visit");
+    cy.visit(Cypress.config("baseUrl") + "/Commands/Basic/visit");
     cy.visit("/");
     cy.visit("/Commands/Basic/visit");
     cy.waitForHighlight();

@@ -7,7 +7,13 @@ const app = express();
 
 const port = process.env.PORT || 3001;
 const distPath = "../frontend/dist/bond-villains";
-app.use(morgan("combined"));
+
+if (
+  process.argv.indexOf("--verbose") !== -1 ||
+  process.argv.indexOf("-v") !== -1
+) {
+  app.use(morgan("combined"));
+}
 app.use(express.static(path.join(__dirname, distPath)));
 
 app.get("/*", function (req, res) {
@@ -17,8 +23,9 @@ app.get("/*", function (req, res) {
 
 const server = http.createServer(app);
 
-server.listen(port, () =>
+server.listen(port, () => {
   console.log(
     `Bond-villains frontend server running on: http://localhost:${port}`
-  )
-);
+  );
+  console.log(`start with -v flag for logging`);
+});

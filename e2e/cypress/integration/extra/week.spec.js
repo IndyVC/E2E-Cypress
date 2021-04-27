@@ -4,6 +4,7 @@ describe("Request demo", () => {
       let villains = JSON.parse(response.body);
       cy.log("First villain: " + villains[0].villain);
     });
+    // cy commands yields, they don't return anything useful
     let v = cy.visit("https://vecka.nu");
     console.log(v);
   });

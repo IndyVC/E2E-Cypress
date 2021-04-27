@@ -6,7 +6,7 @@ import { CommandTitleService } from '../command-title.service';
 import { TestSourceCodeService } from '../test-source-code.service';
 
 declare var require: any; // Make ts compiler accept require calls
-const testCode = require('!raw-loader!../../../../../e2e/cypress/integration/http-request-commands.spec.js');
+const testCode = require('!raw-loader!../../../../../e2e/cypress/integration/commands/http-request-commands.spec.js');
 
 @Component({
   selector: 'app-http-request',

@@ -4,7 +4,7 @@ import { CommandTitleService } from '../command-title.service';
 import { TestSourceCodeService } from '../test-source-code.service';
 
 declare var require: any; // Make ts compiler accept require calls
-const testCode = require('!raw-loader!../../../../../e2e/cypress/integration/basic-commands.spec.js');
+const testCode = require('!raw-loader!../../../../../e2e/cypress/integration/commands/basic-commands.spec.js');
 
 @Component({
   selector: 'app-basic-commands',

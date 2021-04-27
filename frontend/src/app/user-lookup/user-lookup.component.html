@@ -1,0 +1,16 @@
+<form>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>User name</mat-label>
+    <input matInput id="username" value="" [formControl]="userNameControl">
+  </mat-form-field>
+
+  <div class="on-row">
+    <button mat-raised-button color="primary" type="button" id="lookup-button" (click)="lookup()" [disabled]="!userNameControl.valid">Lookup</button>
+  </div>
+
+  <br/>
+  <div class="display-name" *ngIf="userInfo$ | async as userInfo">Full name: {{ userInfo.fullName }}</div>
+  <div class="display-error" *ngIf="error">Error: {{ error }}</div>
+</form>
