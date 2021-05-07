@@ -41,7 +41,10 @@ export class VillainCardComponent {
 
   addVillain(delay: number) {
     this.dialog
-      .open(AddVillainComponent)
+      .open(AddVillainComponent, {
+        minHeight: "60vh",
+        minWidth: "60vh"
+      })
       .afterClosed()
       .subscribe((res: AddVillainResult) => {
         console.log('closed', res);

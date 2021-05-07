@@ -46,17 +46,22 @@ function initApp(app) {
     }
   });
 
-  function postHandler(req, res) {
+  function postHandler(req, res, next) {
+    if (req.body.movie.indexOf("Austin Powers") !== -1) {
+      var err = new Error("Austin Powers is not allowed!");
+      err.status = 400;
+      return next(err);
+    }
     villains.push(req.body);
     res.send(`"OK added villain '${req.body.villain}'"`);
   }
 
-  app.post("/api/:delay", function (req, res) {
+  app.post("/api/:delay", function (req, res, next) {
     const delay = req.params.delay;
     if (delay) {
-      setTimeout(() => postHandler(req, res), delay);
+      setTimeout(() => postHandler(req, res, next), delay);
     } else {
-      postHandler(req, res);
+      postHandler(req, res, next);
     }
   });
 
@@ -65,13 +70,14 @@ function initApp(app) {
     res.send("OK");
   });
 
-  app.get("/user/:username", function (req, res) {
+  app.get("/user/:username", function (req, res, next) {
     let user = users.find((user) => user.userName === req.params.username);
     if (user) {
       res.send(user);
     } else {
-      res.status(404);
-      res.send("Unknown user");
+      var err = new Error("Unknown user");
+      err.status = 404;
+      return next(err);
     }
   });
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,8 @@ import { ElementInteractionComponent } from './commands/element-interaction/elem
 import { HttpRequestComponent } from './commands/http-request/http-request.component';
 import { DebugSettingsCommandsComponent } from './commands/debug-settings-commands/debug-settings-commands.component';
 import { UserLookupComponent } from './user-lookup/user-lookup.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { GlobalErrorHandler } from './global-error-handler';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { UserLookupComponent } from './user-lookup/user-lookup.component';
     HttpRequestComponent,
     DebugSettingsCommandsComponent,
     UserLookupComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,11 @@ import { UserLookupComponent } from './user-lookup/user-lookup.component';
           javascript: () => import('highlight.js/lib/languages/javascript'),
         },
       },
+    },
+    {
+      // processes all errors
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
     },
   ],
   bootstrap: [AppComponent],
