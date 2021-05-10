@@ -30,7 +30,9 @@ export class VillainService {
   private loadVillains(delay: number) {
     return this.httpClient
       .get<Villain[]>(this.url + delay)
-      .pipe(tap((villains) => (this.villainsCache = villains)));
+      .pipe(
+        map(villains => villains.sort((va, vb) => vb.year - va.year)),
+        tap((villains) => (this.villainsCache = villains)));
   }
 
   private shuffle(array) {

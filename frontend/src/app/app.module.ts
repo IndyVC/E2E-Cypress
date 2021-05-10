@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { BasicCommandsComponent } from './commands/basic-commands/basic-commands.component';
 import { CommandsCardComponent } from './commands/commands-card/commands-card.component';
@@ -67,6 +68,7 @@ import { GlobalErrorHandler } from './global-error-handler';
     MatSelectModule,
     MatBadgeModule,
     MatIconModule,
+    MatSortModule,
     HighlightModule,
   ],
   providers: [

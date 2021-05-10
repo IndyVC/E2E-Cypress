@@ -3,11 +3,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
-const HTTP_PORT = 4300;
 const fs = require("fs");
 const path = require("path");
-
 const app = express();
+
+const HTTP_PORT = 4300;
 
 let villains = [];
 let users = [
@@ -39,6 +39,11 @@ function initApp(app) {
   });
 
   function postHandler(req, res, next) {
+    if (!req.body.movie || !req.body.villain || !req.body.actor || !req.body.year) {
+      var err = new Error("Invalid villain data. Properties movie, villain, actor and year are required!");
+      err.status = 400;
+      return next(err);
+    }
     if (req.body.movie.indexOf("Austin Powers") !== -1) {
       var err = new Error("Austin Powers is not allowed!");
       err.status = 400;
