@@ -10,7 +10,6 @@ export class GlobalErrorHandler implements ErrorHandler {
 
     this.zone.run(() =>
       this.dialog.open(ErrorDialogComponent, {
-        minHeight: "300px",
         data: error
       }));
 

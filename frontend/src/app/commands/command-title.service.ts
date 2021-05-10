@@ -18,7 +18,6 @@ export class CommandTitleService {
   constructor() {}
 
   emit(title: string, subtitle: string) {
-    console.log('emit');
     this._title.next({ title, subtitle });
   }
 

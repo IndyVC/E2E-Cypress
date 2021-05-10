@@ -1,8 +1,14 @@
-<h1 mat-dialog-title>Unexpected error</h1>
+<h1 mat-dialog-title>
+  <mat-icon>bug_report</mat-icon> Unexpected error
+</h1>
 <div mat-dialog-content>
-  An unexpected error occurred.
+  <mat-icon color="warn">warning</mat-icon><mat-icon color="warn">warning</mat-icon><mat-icon color="warn">warning</mat-icon>
   <br/>
-  Details: {{ error.statusText }}
+  <p>An unexpected error occurred.</p>
+  <br/>
+  <p>Details: {{ ErrorMessage }}</p>
+  <br/>
+  <mat-icon color="warn">warning</mat-icon><mat-icon color="warn">warning</mat-icon><mat-icon color="warn">warning</mat-icon>
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]>Ok</button>

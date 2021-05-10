@@ -25,14 +25,6 @@ function initApp(app) {
     app.use(morgan("combined"));
   }
 
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render("error", {
-      message: err.message,
-      error: err,
-    });
-  });
-
   function getHandler(res) {
     res.send(JSON.stringify(villains));
   }
@@ -79,6 +71,11 @@ function initApp(app) {
       err.status = 404;
       return next(err);
     }
+  });
+
+
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500).json({ status: err.status, message: err.message });
   });
 }
 

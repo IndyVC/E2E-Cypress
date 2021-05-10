@@ -36,23 +36,19 @@ export class VillainCardComponent {
   }
 
   backgroundRequest() {
+    throw new Error("bad");
     this.villainService.getVillains(0).subscribe();
   }
 
   addVillain(delay: number) {
     this.dialog
-      .open(AddVillainComponent, {
-        minHeight: "60vh",
-        minWidth: "60vh"
-      })
+      .open(AddVillainComponent)
       .afterClosed()
       .subscribe((res: AddVillainResult) => {
-        console.log('closed', res);
         if (res.persist) {
           this.villainService
             .addVillain(res.villain, delay)
             .subscribe((res) => {
-              console.log('wrote villain to API');
               this.villains$ = this.villainService.getVillains(delay);
             });
         }

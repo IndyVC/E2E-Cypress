@@ -11,6 +11,10 @@ export class ErrorDialogComponent implements OnInit {
 
   error: HttpErrorResponse;
 
+  get ErrorMessage() {
+    return this.error?.statusText ?? this.error?.message;
+  }
+
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
     this.error = data;
   }
