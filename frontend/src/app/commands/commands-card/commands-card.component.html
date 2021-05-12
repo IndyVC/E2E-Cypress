@@ -15,7 +15,7 @@
       <mat-card-title>Test case source code</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <pre [ngClass]="{ 'highlight-done': highlightDone }"><code [highlight]="sourceCode.code" [languages]="javascript" (highlighted)="highlighted()"></code></pre>
+      <pre [ngClass]="{ 'highlight-done': highlightDone }"><code [highlight]="sourceCode.code" [languages]="javascript" (highlighted)="highlighted()">{{ sourceCode.code }}</code></pre>
     </mat-card-content>
   </mat-card>
 </div>
