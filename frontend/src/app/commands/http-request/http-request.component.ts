@@ -6,7 +6,7 @@ import { CommandTitleService } from '../command-title.service';
 import { TestSourceCodeService } from '../test-source-code.service';
 
 declare var require: any; // Make ts compiler accept require calls
-const testCode = require('!raw-loader!../../../../../e2e/cypress/integration/commands/http-request-commands.spec.js');
+const testCode = require('!raw-loader!../../../../../e2e/cypress/integration/commands/03-http-request-commands.spec.js');
 
 @Component({
   selector: 'app-http-request',
@@ -26,7 +26,11 @@ export class HttpRequestComponent implements OnInit, OnDestroy {
     private villainService: VillainService
   ) {
     this.command = route.snapshot.paramMap.get('command');
-    this.commandTitle.emit('HTTP request commands', 'cy.' + this.command);
+    let commandSubtitle = 'cy.' + this.command;
+    if (this.command === 'Slow API fails') {
+      commandSubtitle = this.command;
+    }
+    this.commandTitle.emit('HTTP request commands', commandSubtitle);
     this.testSourceCode.emit(testCode.default, this.command);
     this.formGroup = formBuilder.group({
       villainsCount: [null],

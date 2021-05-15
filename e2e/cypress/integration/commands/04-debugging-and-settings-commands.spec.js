@@ -3,20 +3,20 @@ describe("Debugging and settings commands", () => {
     cy.request("DELETE", "http://localhost:4300/api");
   });
 
-  it("log", () => {
-    cy.visit("/Commands/Debug/log");
-    cy.waitForHighlight();
-    cy.log("before wait", new Date().toLocaleTimeString());
-    cy.wait(2000);
-    cy.log("after wait", new Date().toLocaleTimeString());
-  });
-
   it("pause", () => {
     cy.visit("/Commands/Debug/pause");
     cy.waitForHighlight();
     cy.pause();
     cy.log("before click");
     cy.get("#save-button").click();
+  });
+
+  it("log", () => {
+    cy.visit("/Commands/Debug/log");
+    cy.waitForHighlight();
+    cy.log("before wait", new Date().toLocaleTimeString());
+    cy.wait(2000);
+    cy.log("after wait", new Date().toLocaleTimeString());
   });
 
   it("config", () => {
@@ -30,8 +30,8 @@ describe("Debugging and settings commands", () => {
   it("env", () => {
     cy.visit("/Commands/Debug/env");
     cy.waitForHighlight();
-    cy.log("baseUrl is", Cypress.env("baseUrl"));
-    Cypress.env("viewportWidth", 500);
+    cy.log("USERNAME is", Cypress.env("USERNAME"));
+    Cypress.env("USERNAME", "neal");
     cy.get("#first-name").type(Cypress.env("USERNAME"));
   });
 

@@ -43,6 +43,13 @@ describe("HTTP request commands", () => {
     cy.get("#villains-count").should("have.value", "0");
   });
 
+  it("Slow API fails", () => {
+    cy.visit("/Commands/Http/Slow API fails");
+    cy.waitForHighlight();
+    cy.get("#load-villains").click();
+    cy.get("#villains-count").should("have.value", "34");
+  });
+
   it("wait", () => {
     cy.visit("/Commands/Http/wait");
     cy.waitForHighlight();
