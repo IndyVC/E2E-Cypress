@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommandTitle } from '../commands/command-title.service';
 
 export interface CommandGroup {
   groupName: string;
@@ -28,6 +27,11 @@ export class HomeComponent implements OnInit {
       groupName: 'HTTP request commands',
       baseUrl: '/Commands/Http/',
       commands: ['request', 'then', 'fixture', 'intercept', 'wait'],
+    },
+    {
+      groupName: 'Debugging and settings commands',
+      baseUrl: '/Commands/Debug/',
+      commands: ['log', 'pause', 'config', 'env', 'debug'],
     },
   ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import {
@@ -20,7 +20,7 @@ export class VillainCardComponent {
     private villainService: VillainService,
     private dialog: MatDialog
   ) {
-    this.villains$ = this.villainService.getVillains(0);
+    this.quickReload();
   }
 
   quickReload() {
@@ -44,12 +44,10 @@ export class VillainCardComponent {
       .open(AddVillainComponent)
       .afterClosed()
       .subscribe((res: AddVillainResult) => {
-        console.log('closed', res);
         if (res.persist) {
           this.villainService
             .addVillain(res.villain, delay)
             .subscribe((res) => {
-              console.log('wrote villain to API');
               this.villains$ = this.villainService.getVillains(delay);
             });
         }

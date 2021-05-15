@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { BasicCommandsComponent } from './commands/basic-commands/basic-commands.component';
 import { CommandsCardComponent } from './commands/commands-card/commands-card.component';
@@ -29,6 +31,8 @@ import { ElementInteractionComponent } from './commands/element-interaction/elem
 import { HttpRequestComponent } from './commands/http-request/http-request.component';
 import { DebugSettingsCommandsComponent } from './commands/debug-settings-commands/debug-settings-commands.component';
 import { UserLookupComponent } from './user-lookup/user-lookup.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { GlobalErrorHandler } from './global-error-handler';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import { UserLookupComponent } from './user-lookup/user-lookup.component';
     HttpRequestComponent,
     DebugSettingsCommandsComponent,
     UserLookupComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,8 @@ import { UserLookupComponent } from './user-lookup/user-lookup.component';
     MatRadioModule,
     MatSelectModule,
     MatBadgeModule,
+    MatIconModule,
+    MatSortModule,
     HighlightModule,
   ],
   providers: [
@@ -73,6 +80,11 @@ import { UserLookupComponent } from './user-lookup/user-lookup.component';
           javascript: () => import('highlight.js/lib/languages/javascript'),
         },
       },
+    },
+    {
+      // processes all errors
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
     },
   ],
   bootstrap: [AppComponent],

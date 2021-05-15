@@ -30,8 +30,9 @@ describe("HTTP request commands", () => {
     cy.fixture("new-villain.json").then((data) => {
       cy.request("POST", "http://localhost:4300/api/0", data);
     });
-    cy.request("POST", "http://localhost:4300/api/0", {
-      fixture: "new-villain.json",
+    cy.fixture("new-villain.json").as('new-villain');
+    cy.get('@new-villain').then((data) => {
+      cy.request("POST", "http://localhost:4300/api/0", data)
     });
   });
 

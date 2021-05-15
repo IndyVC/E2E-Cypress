@@ -11,13 +11,12 @@
     <br />
     <app-villain-list [villains]="villains$"> </app-villain-list>
 
+    <button mat-raised-button (click)="addVillain(0)" id="add-villain">Add Villain</button>
     <br/>
-    <button mat-raised-button (click)="addVillain(0)">Add Villain</button>
-
     <button mat-raised-button (click)="cacheReload()">Reload from cache</button>
-    <button mat-raised-button (click)="quickReload()">Reload 0 ms</button>
-    <button mat-raised-button (click)="slowReload(100)">Reload 100 ms</button>
-    <button mat-raised-button (click)="slowReload(1000)">Reload 1000 ms</button>
+    <button mat-raised-button (click)="quickReload()">Reload from API</button>
+    <br/>
+    <button mat-raised-button (click)="slowReload(1000)">Slow reload from API</button>
     <button mat-raised-button (click)="backgroundRequest()">
       Background request
     </button>

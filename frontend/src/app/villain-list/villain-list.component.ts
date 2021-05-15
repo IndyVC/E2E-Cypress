@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Villain } from '../villain.model';
-import { tap } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-villain-list',
@@ -13,10 +13,10 @@ import { MatPaginator } from '@angular/material/paginator';
 export class VillainListComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Villain>();
   villainsSubscription: Subscription;
-  //villains$: Observable<Villain[]>;
   loadComplete: Date;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   @Input()
   set villains(newVillains$: Observable<Villain[]>) {
@@ -35,6 +35,7 @@ export class VillainListComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {}

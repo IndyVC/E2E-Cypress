@@ -3,11 +3,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
-const HTTP_PORT = 4300;
 const fs = require("fs");
 const path = require("path");
-
 const app = express();
+
+const HTTP_PORT = 4300;
 
 let villains = [];
 let users = [
@@ -25,14 +25,6 @@ function initApp(app) {
     app.use(morgan("combined"));
   }
 
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render("error", {
-      message: err.message,
-      error: err,
-    });
-  });
-
   function getHandler(res) {
     res.send(JSON.stringify(villains));
   }
@@ -46,17 +38,27 @@ function initApp(app) {
     }
   });
 
-  function postHandler(req, res) {
+  function postHandler(req, res, next) {
+    if (!req.body.movie || !req.body.villain || !req.body.actor || !req.body.year) {
+      var err = new Error("Invalid villain data. Properties movie, villain, actor and year are required!");
+      err.status = 400;
+      return next(err);
+    }
+    if (req.body.movie.indexOf("Austin Powers") !== -1) {
+      var err = new Error("Austin Powers is not allowed!");
+      err.status = 400;
+      return next(err);
+    }
     villains.push(req.body);
     res.send(`"OK added villain '${req.body.villain}'"`);
   }
 
-  app.post("/api/:delay", function (req, res) {
+  app.post("/api/:delay", function (req, res, next) {
     const delay = req.params.delay;
     if (delay) {
-      setTimeout(() => postHandler(req, res), delay);
+      setTimeout(() => postHandler(req, res, next), delay);
     } else {
-      postHandler(req, res);
+      postHandler(req, res, next);
     }
   });
 
@@ -65,14 +67,20 @@ function initApp(app) {
     res.send("OK");
   });
 
-  app.get("/user/:username", function (req, res) {
+  app.get("/user/:username", function (req, res, next) {
     let user = users.find((user) => user.userName === req.params.username);
     if (user) {
       res.send(user);
     } else {
-      res.status(404);
-      res.send("Unknown user");
+      var err = new Error("Unknown user");
+      err.status = 404;
+      return next(err);
     }
+  });
+
+
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500).json({ status: err.status, message: err.message });
   });
 }
 
