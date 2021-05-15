@@ -27,9 +27,6 @@ export class HttpRequestComponent implements OnInit, OnDestroy {
   ) {
     this.command = route.snapshot.paramMap.get('command');
     let commandSubtitle = 'cy.' + this.command;
-    if (this.command === 'Slow API fails') {
-      commandSubtitle = this.command;
-    }
     this.commandTitle.emit('HTTP request commands', commandSubtitle);
     this.testSourceCode.emit(testCode.default, this.command);
     this.formGroup = formBuilder.group({
