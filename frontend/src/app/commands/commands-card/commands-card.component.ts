@@ -7,6 +7,10 @@ import {
   TestSourceCodeService,
 } from '../test-source-code.service';
 
+
+declare var require: any; // Make ts compiler accept require calls
+const hljs = require('highlight.js');
+
 @Component({
   selector: 'app-commands-card',
   templateUrl: './commands-card.component.html',
@@ -24,8 +28,10 @@ export class CommandsCardComponent implements OnInit {
   ) {
     this.title$ = commandTitle.title$;
     this.code$ = testSourceCode.code$.pipe(
-      tap(() => {
+      tap((code) => {
         this.highlightDone = false;
+        hljs.highlightAll();
+        console.log('got code', code);
       })
     );
   }
