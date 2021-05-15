@@ -26,7 +26,11 @@ export class HttpRequestComponent implements OnInit, OnDestroy {
     private villainService: VillainService
   ) {
     this.command = route.snapshot.paramMap.get('command');
-    let commandSubtitle = 'cy.' + this.command;
+    let commandPrefix = 'cy.';
+    if (this.command === 'then') {
+      commandPrefix = '[element, fixture or request].';
+    }
+    let commandSubtitle = commandPrefix + this.command;
     this.commandTitle.emit('HTTP request commands', commandSubtitle);
     this.testSourceCode.emit(testCode.default, this.command);
     this.formGroup = formBuilder.group({

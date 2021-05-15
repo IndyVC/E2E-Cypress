@@ -10,10 +10,7 @@ export interface CommandTitle {
   providedIn: 'root',
 })
 export class CommandTitleService {
-  private _title = new BehaviorSubject<CommandTitle>({
-    title: '',
-    subtitle: '',
-  });
+  private _title = new BehaviorSubject<CommandTitle>(null);
 
   constructor() {}
 

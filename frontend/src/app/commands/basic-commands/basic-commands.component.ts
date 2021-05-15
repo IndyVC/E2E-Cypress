@@ -22,7 +22,11 @@ export class BasicCommandsComponent implements OnInit, OnDestroy {
     private testSourceCode: TestSourceCodeService
   ) {
     this.command = route.snapshot.paramMap.get('command');
-    this.commandTitle.emit('Basic commands', 'cy.' + this.command);
+    let commandPrefix = 'cy.';
+    if (this.command === 'as') {
+      commandPrefix = '[element, fixture or request].';
+    }
+    this.commandTitle.emit('Basic commands', commandPrefix + this.command);
     this.testSourceCode.emit(testCode.default, this.command);
     if (this.command === 'get') {
       setTimeout(() => (this.snail = true), 1000);

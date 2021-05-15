@@ -29,7 +29,7 @@ export class ElementInteractionComponent implements OnInit {
     this.command = route.snapshot.paramMap.get('command');
     this.commandTitle.emit(
       'Element interaction commands',
-      'cy.' + this.command
+      '[element].' + this.command
     );
     this.testSourceCode.emit(testCode.default, this.command);
   }

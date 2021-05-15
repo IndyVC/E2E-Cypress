@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 export interface TestSourceCode {
   code: string;
@@ -9,7 +9,7 @@ export interface TestSourceCode {
   providedIn: 'root',
 })
 export class TestSourceCodeService {
-  private _code = new BehaviorSubject<TestSourceCode>({ code: '' });
+  private _code = new BehaviorSubject<TestSourceCode>(null);
 
   constructor() {}
 
@@ -32,7 +32,7 @@ export class TestSourceCodeService {
   }
 
   clear() {
-    this._code.next({ code: '' });
+    this._code.next(null);
   }
 
   get code$() {
